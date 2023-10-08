@@ -1,0 +1,150 @@
+.form-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 450px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  padding-top: 100px;
+  min-height: 80vh;
+}
+
+.title-contact {
+  font-size: 28px;
+  color: black;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  text-decoration: underline;
+}
+
+.title-contact::before,
+.title-contact::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: black;
+}
+
+.title-contact::before {
+  width: 18px;
+  height: 18px;
+  background-color: black;
+}
+
+.title-contact::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message,
+.signin {
+  font-size: 20px;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: royalblue;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+.flex-contact {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form-contact label {
+  position: relative;
+}
+
+.form-contact label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form-contact label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form-contact label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form-contact label .input:focus + span,
+.form label .input:valid + span {
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form-contact label .input:valid + span {
+  color: green;
+}
+
+.submit {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: rgb(243, 242, 242);
+  border: 2px solid #ffffffea;
+  transition: 0.5s ease;
+}
+
+.submit:hover {
+  background: black;
+  border: 1px solid black;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 1px black, 0 0 5px black, 0 0 10px black,
+    0 0 30px black;
+    color: #fff;
+    letter-spacing: 8px;
+}
+
+.text-a {
+  resize: vertical;
+  outline: none;
+  height: 180px;
+}
+
+.message-form {
+  width: 100%;
+  outline: none;
+  padding: 10px;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}

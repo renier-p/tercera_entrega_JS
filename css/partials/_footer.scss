@@ -1,0 +1,43 @@
+.footer-menu {
+  background-color: $footerMenuBgColor;
+  color: #fff;
+  margin-top: 0.313rem;
+  padding-inline: 0;
+  font-family: $fontRusso;
+}
+
+.copy-menu {
+  background-color: $copyMenuBgColor;
+  padding-block: 0.188rem;
+  justify-content: center;
+  display: flex;
+  letter-spacing: 0.125rem;
+}
+
+.container {
+  & .box-class {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: end;
+
+    & a:hover {
+      color: aqua;
+      transform: rotateY(360deg);
+      transition: 0.5s;
+    }
+  }
+}
+
+.is-pair {
+  display: flex;
+  flex-direction: column;
+
+  & div:nth-child(odd) {
+    flex-direction: row-reverse !important;
+    padding: 1em 0;
+  }
+}
+
+.logo-mob {
+  height: 100px;
+}

@@ -1,0 +1,134 @@
+@media (max-width: 576px) {
+  .is-mobile {
+    flex-direction: column;
+  }
+
+  .login-box {
+    width: 300px !important;
+  }
+
+  .box-class {
+    justify-content: center !important;
+  }
+
+  .box-img-class {
+    justify-content: center !important;
+
+    & img {
+      width: 12.5rem !important;
+    }
+  }
+
+  .mid-section {
+    padding-inline: 2rem 0;
+    text-align: center;
+  }
+
+  .is-pair div:nth-child(odd) {
+    flex-direction: column-reverse !important;
+    padding: 1rem;
+  }
+  .is-pair div:nth-child(even) {
+    flex-direction: column-reverse !important;
+    padding: 1rem;
+  }
+
+  .container-img {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+
+    .box-img {
+      & img {
+        height: 400px;
+        margin-top: 4rem;
+      }
+    }
+  }
+
+  .galery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .close {
+    top: 18rem;
+    right: 2rem;
+  }
+
+  .width-img {
+    width: 100% !important;
+  }
+  .menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 18px;
+
+    & a {
+      position: relative;
+      display: block;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: 500;
+      text-align: left;
+      color: #000;
+    }
+  }
+
+  .navbar-nav .dropdown-menu {
+    background: #f8f9fa;
+    border: none;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  .renier-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 125px;
+  }
+
+  .v-landscape {
+    display: none;
+  }
+
+  .v-mobile {
+    display: block;
+  }
+
+  .logo-mob {
+    margin-top: 34px;
+    width: 60%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .v-tablet {
+    flex-direction: column !important;
+  }
+
+  .p-center {
+    max-width: 34ch;
+    text-align: center;
+  }
+
+  .logo-mob {
+    width: 60%;
+  }
+
+  .v-mobile {
+    display: none;
+  }
+
+  .v-landscape {
+    display: block;
+  }
+}
+
+@media (min-width: 992px) {
+  .v-landscape {
+    display: none;
+  }
+  .logo-mob {
+    width: 60%;
+  }
+}
