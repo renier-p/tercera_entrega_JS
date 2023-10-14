@@ -2,9 +2,8 @@
   width: 100%;
   margin-bottom: 10px;
   border-radius: 10px !important;
-  -o-object-fit: cover;
   object-fit: cover;
-  object-fit: contain;
+  max-height: 400px;
 }
 
 h1 {
@@ -131,20 +130,19 @@ select {
 }
 
 .card1 .card1-title {
-  color: black;
+  color: rgb(225, 76, 65);
   position: unset;
   width: 300px;
+  height: 200px;
   font-family: $fontRusso;
   font-size: 1.2rem;
 }
 
 .card1-image {
-  display: flex;
   width: 100%;
+  position: relative;
   object-fit: cover;
-  max-height: 350px;
-  min-height: 350px;
-  justify-content: center;
+  display: block;
 }
 
 .productoEnCarrito {
@@ -175,21 +173,4 @@ select {
 
 .boton-eliminar:focus {
   outline: none;
-}
-
-.product-name {
-  display: flex;
-  flex-direction: row;
-}
-
-.plus-icon {
-  background-color: black;
-  color: white;
-  width: 40px;
-  height: 30px;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 }

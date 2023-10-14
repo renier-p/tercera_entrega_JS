@@ -6,14 +6,12 @@ const pintarProductos = (data) => {
     div.classList.add("card1");
     div.innerHTML += `<div class="card1-image">
                         <img class="img_carrito" src=${producto.imagen}>
-                        </div>
-                        <div class="card1-content">
-                        <div class="product-name">
                         <span class="card1-title">${producto.nombre.toUpperCase()}</span>
-                        <a class="plus-icon"><i id=${
+                        <a class="btn-floating halfway-fab wabes-effect waves-light black"><i id=${
                           producto.id
                         } class="fa fa-add agregar"></i></a>
-                        </div>
+                      </div>
+                      <div class="card1-content">
                           <p>${producto.desc}</p>
                           <p>$${producto.precio.toLocaleString()} pesos</p>
                       </div>
