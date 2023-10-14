@@ -47,6 +47,7 @@ const pintarProductos = (stock) => {
                           `;
         contenedor.appendChild(div);
       });
+      iniciarCarrito(stock);
     });
 };
 
