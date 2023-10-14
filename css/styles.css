@@ -616,8 +616,9 @@
   margin-bottom: 10px;
   border-radius: 10px !important;
   -o-object-fit: cover;
-     object-fit: cover;
-  max-height: 400px;
+  object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 h1 {
@@ -767,17 +768,21 @@ select {
   color: #e14c41;
   position: unset;
   width: 300px;
-  height: 200px;
   font-family: "Russo One", sans-serif;
   font-size: 1.2rem;
 }
 
 .card1-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: 100%;
-  position: relative;
   -o-object-fit: cover;
-     object-fit: cover;
-  display: block;
+  max-height: 350px;
+  min-height: 350px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .productoEnCarrito {
@@ -812,5 +817,33 @@ select {
 
 .boton-eliminar:focus {
   outline: none;
+}
+
+.product-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.plus-icon {
+  background-color: black;
+  color: white;
+  width: 40px;
+  height: 30px;
+  border-radius: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.css.map */
