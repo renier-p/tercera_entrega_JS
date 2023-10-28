@@ -85,27 +85,103 @@ const iniciarCarrito = (productos) => {
   };
 
   // Función para disminuir la cantidad
-  const disminuirCantidad = (productoId) => {
+  // const disminuirCantidad = (productoId) => {
+  //   const cantidadElement = document.getElementById(`cantidad${productoId}`);
+  //   const cantidad = parseInt(cantidadElement.textContent);
+
+  //   if (cantidad > 0) {
+  //     // Disminuir la cantidad y actualizar el elemento
+  //     cantidadElement.textContent = cantidad - 1;
+  //   }
+  // };
+
+  const reducirCantidad = (productoId) => {
     const cantidadElement = document.getElementById(`cantidad${productoId}`);
     const cantidad = parseInt(cantidadElement.textContent);
 
-    if (cantidad > 0) {
-      // Disminuir la cantidad y actualizar el elemento
-      cantidadElement.textContent = cantidad - 1;
+    const nuevaCantidad = cantidad - 1;
+    const totalProductos = JSON.parse(localStorage.getItem("carrito"));
+
+    // Encuentra el objeto con el productoId en el array productos
+    const producto = totalProductos.find(
+      (producto) => producto.id === productoId
+    );
+
+    if (producto) {
+      // Actualiza la cantidad en el objeto del array
+      producto.cantidad = nuevaCantidad;
     }
+
+    cantidadElement.textContent = nuevaCantidad;
+    console.log(producto.precio);
+
+    const totalCompra = totalProductos.reduce((acc, producto) => {
+      return acc + producto.precio * producto.cantidad;
+    }, 0);
+
+    const precioTotalElement = document.getElementById("precioTotal");
+    precioTotalElement.innerText = `Total: $${totalCompra.toFixed(2)}`;
   };
 
   // Función para aumentar la cantidad
+  // const aumentarCantidad = (productoId) => {
+  //   const cantidadElement = document.getElementById(`cantidad${productoId}`);
+  //   const cantidad = parseInt(cantidadElement.textContent);
+
+  //   // Aumentar la cantidad y actualizar el elemento
+  //   cantidadElement.textContent = cantidad + 1;
+  //   let precioItem = document.getElementById("#precio-item");
+
+  //   console.log(precioItem);
+  //   console.log(cantidad);
+  // };
+
+  // const aumentarCantidad = (productoId) => {
+  //   const cantidadElement = document.getElementById(`cantidad${productoId}`);
+  //   const cantidad = parseInt(cantidadElement.textContent);
+
+  //   // Aumentar la cantidad y actualizar el elemento
+  //   cantidadElement.textContent = cantidad + 1;
+  //   actualizarPrecioTotal(); // Llama a la función para actualizar el precio total
+  // };
+
+  //________________________________________________________________________
+  // const totalProductos = JSON.parse(localStorage.getItem("carrito"));
+  // console.log(totalProductos);
+  // let totalCantidad = 0;
+
+  // for (const producto of totalProductos) {
+  //   totalCantidad += producto.cantidad;
+  // }
+
+  // console.log("La cantidad total es:", totalCantidad);
+
   const aumentarCantidad = (productoId) => {
     const cantidadElement = document.getElementById(`cantidad${productoId}`);
     const cantidad = parseInt(cantidadElement.textContent);
 
-    // Aumentar la cantidad y actualizar el elemento
-    cantidadElement.textContent = cantidad + 1;
-    let precioItem = document.getElementById("#precio-item");
+    const nuevaCantidad = cantidad + 1;
+    const totalProductos = JSON.parse(localStorage.getItem("carrito"));
 
-    console.log(precioItem);
-    console.log(cantidad);
+    // Encuentra el objeto con el productoId en el array productos
+    const producto = totalProductos.find(
+      (producto) => producto.id === productoId
+    );
+
+    if (producto) {
+      // Actualiza la cantidad en el objeto del array
+      producto.cantidad = nuevaCantidad;
+    }
+
+    cantidadElement.textContent = nuevaCantidad;
+    console.log(producto.precio);
+
+    const totalCompra = totalProductos.reduce((acc, producto) => {
+      return acc + producto.precio * producto.cantidad;
+    }, 0);
+
+    const precioTotalElement = document.getElementById("precioTotal");
+    precioTotalElement.innerText = `Total: $${totalCompra.toFixed(2)}`;
   };
 
   const actualizarTotalesCarrito = (carrito) => {
@@ -155,6 +231,7 @@ const iniciarCarrito = (productos) => {
             <button class="btn waves-effect waves-ligth boton-eliminar" value="${
               producto.id
             }">x</button>
+            <p id="precioTotal">Total: $0.00</p>
         `;
       contenedor.appendChild(div);
 

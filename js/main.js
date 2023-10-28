@@ -1,13 +1,30 @@
-const pintarProductos = (stock) => {
+const pintarProductos = () => {
   const contenedor = document.getElementById("contenedor-productos");
 
-  fetch("../stock/stock.json")
-    .then((response) => response.json())
+  const fetchData = () => {
+    return new Promise((resolve, reject) => {
+      fetch("../stock/stock.json")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((stock) => {
+          resolve(stock);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
+  fetchData()
     .then((stock) => {
-      stock.forEach((item) => {
+      const elements = stock.map((item) => {
         const div = document.createElement("div");
         div.classList.add("card1");
-        div.innerHTML += `<div class="card1-image">
+        div.innerHTML = `<div class="card1-image">
                             <img class="img_carrito" src=${item.imagen}>
                             </div>
                             <div class="card1-content">
@@ -19,10 +36,14 @@ const pintarProductos = (stock) => {
                             </div>
                               <p>${item.desc}</p>
                               <p>$${item.precio.toLocaleString()} pesos</p>
-                          </div>
-                          `;
+                          </div>`;
         contenedor.appendChild(div);
+        return div;
       });
+
       iniciarCarrito(stock);
+    })
+    .catch((error) => {
+      console.error("Error al obtener datos:", error);
     });
 };
