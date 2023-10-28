@@ -1,2 +1,1 @@
-document.addEventListener("DOMContentLoaded", pintarProductos(productos));
-document.addEventListener("DOMContentLoaded", cargarCarritoDeCompras());
+document.addEventListener("DOMContentLoaded", pintarProductos());
