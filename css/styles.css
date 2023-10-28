@@ -778,7 +778,6 @@ select {
   display: flex;
   width: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
   max-height: 350px;
   min-height: 350px;
   -webkit-box-pack: center;
