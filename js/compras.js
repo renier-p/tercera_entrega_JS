@@ -56,12 +56,8 @@ const iniciarCarrito = (productos) => {
       }">X</button>
     `;
     contenedor.appendChild(div);
-
-    // Obtener los botones de disminuir y aumentar
     const botonDisminuir = div.querySelector(".boton-disminuir");
     const botonAumentar = div.querySelector(".boton-aumentar");
-
-    // Manejadores de eventos para disminuir y aumentar
     botonDisminuir.addEventListener("click", () => {
       disminuirCantidad(producto.id);
     });
@@ -70,7 +66,6 @@ const iniciarCarrito = (productos) => {
       aumentarCantidad(producto.id);
     });
 
-    // Mostrar la notificación
     Toastify({
       text: `${producto.nombre} se ha añadido al carrito`,
       duration: 1500,
@@ -84,104 +79,69 @@ const iniciarCarrito = (productos) => {
     }).showToast();
   };
 
-  // Función para disminuir la cantidad
-  // const disminuirCantidad = (productoId) => {
-  //   const cantidadElement = document.getElementById(`cantidad${productoId}`);
-  //   const cantidad = parseInt(cantidadElement.textContent);
-
-  //   if (cantidad > 0) {
-  //     // Disminuir la cantidad y actualizar el elemento
-  //     cantidadElement.textContent = cantidad - 1;
-  //   }
-  // };
-
-  const reducirCantidad = (productoId) => {
+  const disminuirCantidad = (productoId) => {
     const cantidadElement = document.getElementById(`cantidad${productoId}`);
     const cantidad = parseInt(cantidadElement.textContent);
 
-    const nuevaCantidad = cantidad - 1;
-    const totalProductos = JSON.parse(localStorage.getItem("carrito"));
+    if (cantidad > 0) {
+      const nuevaCantidad = cantidad - 1;
+      let totalProductos = JSON.parse(localStorage.getItem("carrito"));
 
-    // Encuentra el objeto con el productoId en el array productos
-    const producto = totalProductos.find(
-      (producto) => producto.id === productoId
-    );
+      const producto = totalProductos.find(
+        (producto) => producto.id === productoId
+      );
 
-    if (producto) {
-      // Actualiza la cantidad en el objeto del array
-      producto.cantidad = nuevaCantidad;
+      if (producto) {
+        const productoActualizado = { ...producto, cantidad: nuevaCantidad };
+
+        const index = totalProductos.findIndex((p) => p.id === productoId);
+
+        totalProductos[index] = productoActualizado;
+      }
+
+      cantidadElement.textContent = nuevaCantidad;
+
+      const totalCompra = totalProductos.reduce((acc, producto) => {
+        return acc + producto.precio * producto.cantidad;
+      }, 0);
+
+      localStorage.setItem("carrito", JSON.stringify(totalProductos));
+
+      const precioTotalElement = document.getElementById("precioTotal");
+      precioTotalElement.innerText = `Total: $${totalCompra.toLocaleString()} pesos`;
     }
-
-    cantidadElement.textContent = nuevaCantidad;
-    console.log(producto.precio);
-
-    const totalCompra = totalProductos.reduce((acc, producto) => {
-      return acc + producto.precio * producto.cantidad;
-    }, 0);
-
-    const precioTotalElement = document.getElementById("precioTotal");
-    precioTotalElement.innerText = `Total: $${totalCompra.toFixed(2)}`;
   };
-
-  // Función para aumentar la cantidad
-  // const aumentarCantidad = (productoId) => {
-  //   const cantidadElement = document.getElementById(`cantidad${productoId}`);
-  //   const cantidad = parseInt(cantidadElement.textContent);
-
-  //   // Aumentar la cantidad y actualizar el elemento
-  //   cantidadElement.textContent = cantidad + 1;
-  //   let precioItem = document.getElementById("#precio-item");
-
-  //   console.log(precioItem);
-  //   console.log(cantidad);
-  // };
-
-  // const aumentarCantidad = (productoId) => {
-  //   const cantidadElement = document.getElementById(`cantidad${productoId}`);
-  //   const cantidad = parseInt(cantidadElement.textContent);
-
-  //   // Aumentar la cantidad y actualizar el elemento
-  //   cantidadElement.textContent = cantidad + 1;
-  //   actualizarPrecioTotal(); // Llama a la función para actualizar el precio total
-  // };
-
-  //________________________________________________________________________
-  // const totalProductos = JSON.parse(localStorage.getItem("carrito"));
-  // console.log(totalProductos);
-  // let totalCantidad = 0;
-
-  // for (const producto of totalProductos) {
-  //   totalCantidad += producto.cantidad;
-  // }
-
-  // console.log("La cantidad total es:", totalCantidad);
 
   const aumentarCantidad = (productoId) => {
     const cantidadElement = document.getElementById(`cantidad${productoId}`);
     const cantidad = parseInt(cantidadElement.textContent);
 
     const nuevaCantidad = cantidad + 1;
-    const totalProductos = JSON.parse(localStorage.getItem("carrito"));
+    let totalProductos = JSON.parse(localStorage.getItem("carrito"));
 
-    // Encuentra el objeto con el productoId en el array productos
     const producto = totalProductos.find(
       (producto) => producto.id === productoId
     );
 
     if (producto) {
-      // Actualiza la cantidad en el objeto del array
-      producto.cantidad = nuevaCantidad;
+      const productoActualizado = { ...producto, cantidad: nuevaCantidad };
+      const index = totalProductos.findIndex((p) => p.id === productoId);
+      totalProductos[index] = productoActualizado;
     }
 
     cantidadElement.textContent = nuevaCantidad;
     console.log(producto.precio);
+    console.log(producto.cantidad);
+    console.log(totalProductos);
 
     const totalCompra = totalProductos.reduce((acc, producto) => {
       return acc + producto.precio * producto.cantidad;
     }, 0);
+    console.log(totalCompra);
+    localStorage.setItem("carrito", JSON.stringify(totalProductos));
 
     const precioTotalElement = document.getElementById("precioTotal");
-    precioTotalElement.innerText = `Total: $${totalCompra.toFixed(2)}`;
+    precioTotalElement.innerText = `Total: $${totalCompra.toLocaleString()} pesos`;
   };
 
   const actualizarTotalesCarrito = (carrito) => {
@@ -194,7 +154,7 @@ const iniciarCarrito = (productos) => {
     pintarTotalesCarrito(totalCantidad, totalCompra);
     guardarCarritoStorage(carrito);
     const precioTotalElement = document.getElementById("precioTotal");
-    precioTotalElement.innerText = `Total: $${totalCompra.toLocaleString()}`;
+    precioTotalElement.innerText = `Total: $${totalCompra.toLocaleString()} pesos`;
   };
 
   const pintarTotalesCarrito = (totalCantidad, totalCompra) => {
@@ -231,15 +191,11 @@ const iniciarCarrito = (productos) => {
             <button class="btn waves-effect waves-ligth boton-eliminar" value="${
               producto.id
             }">x</button>
-            <p id="precioTotal">Total: $0.00</p>
         `;
       contenedor.appendChild(div);
-
-      // Obtener los botones de disminuir y aumentar
       const botonDisminuir = div.querySelector(".boton-disminuir");
       const botonAumentar = div.querySelector(".boton-aumentar");
 
-      // Manejadores de eventos para disminuir y aumentar
       botonDisminuir.addEventListener("click", () => {
         disminuirCantidad(producto.id);
       });
