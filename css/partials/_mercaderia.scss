@@ -88,7 +88,7 @@ select {
 .modal-carrito {
   position: relative;
   background-color: white;
-  min-width: 500px;
+  min-width: 700px;
   padding: 20px;
   margin-top: -100%;
   transition: all 0.5s;
@@ -192,4 +192,18 @@ select {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.cantidad-control {
+  display: flex;
+  align-items: center;
+}
+
+.cantidad-control button {
+  margin: 0 10px;
+  background-color: black;
+}
+
+.toastify-top {
+  top: 70px !important;
 }
